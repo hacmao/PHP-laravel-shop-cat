@@ -11,6 +11,14 @@ class Cat extends Model
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';
+    protected $fillable = [
+        'name',
+        'img',
+        'type',
+        'location',
+        'age',
+        'price'
+    ];
 
     public function catType() {
         return $this->hasOne(CatType::class, 'name', 'type');

@@ -22,7 +22,8 @@ class CatFactory extends Factory
     public function definition()
     {
         return [
-            "name" => 'meo '.$this->faker->numberBetween(1000000, 2000000),
+            'name' => 'meo '.$this->faker->numberBetween(1000000, 2000000),
+            'img' => 'https://cdn.chotot.com/1DIewdEQm1r-j8IpMQXUnTcCVXP_KcMiYylIZMbkSY0/preset:listing/plain/e30b1f210d44deeca4dd23ab892ae944-2740420474764745734.jpg',
             'type' => $this->faker->randomElement(['meo mun', 'meo ba tu']),
             'location' => $this->faker->randomElement(['hanoi', 'hcm', 'danang']),
             'age' => $this->faker->randomFloat(1,0.1, 10),

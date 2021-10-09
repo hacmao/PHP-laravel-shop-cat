@@ -16,6 +16,7 @@ class CreateCatsTable extends Migration
         Schema::create('cats', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->text('img');
             $table->text('type');
             $table->text('location');
             $table->float('age');

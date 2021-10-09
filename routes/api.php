@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrudController;
@@ -24,3 +25,8 @@ Route::get('/users', [CrudController::class, 'list']);
 
 Route::get('/users/{id}', [CrudController::class, 'get']);
 
+Route::get('/cats', [CatController::class, 'list']);
+
+Route::get('/cats/{id}', [CatController::class, 'findById']);
+
+Route::post('/cats', [CatController::class, 'store']);
