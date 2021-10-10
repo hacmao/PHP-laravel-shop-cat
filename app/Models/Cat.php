@@ -17,10 +17,15 @@ class Cat extends Model
         'type',
         'location',
         'age',
-        'price'
+        'price',
+        'state'
     ];
 
     public function catType() {
         return $this->hasOne(CatType::class, 'name', 'type');
+    }
+
+    public function city() {
+        return $this->hasOne(City::class, 'code', 'location');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Cat;
 use Illuminate\Http\Request;
 use App\Services\CatService;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class CatController extends ApiController
 {
@@ -18,7 +19,7 @@ class CatController extends ApiController
     }
 
     public function list() {
-        return Cat::all();
+        return Cat::with('city')->get();
     }
 
     public function findById($id) {
@@ -27,6 +28,17 @@ class CatController extends ApiController
 
     public function store(Request $request) {
         $res = $this->catService->store($request);
+        return $this->apiResponse($res);
+    }
+
+    public function updateState(Request $request) {
+        $res = $this->catService->updateState($request);
+        return $this->apiResponse($res);
+    }
+
+    public function filter(Request $request) {
+        $res = $this->catService->filter($request);
+        Log::info($res);
         return $this->apiResponse($res);
     }
 }

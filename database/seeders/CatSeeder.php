@@ -27,11 +27,13 @@ class CatSeeder extends Seeder
 //        DB::table('cats')->insert([
 //            'name' => Str::Random(10),
 //            'type' => 'meo ba tu',
+//            'img' => '',
 //            'location' => 'hanoi',
 //            'age' => 2,
+//            'state' => 1,
 //            'price' => 2000000
 //        ]);
 
-        Cat::factory(10)->create();
+        Cat::factory(20)->create();
     }
 }

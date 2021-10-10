@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatsTable extends Migration
+class CreateCityModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateCatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cats', function (Blueprint $table) {
+        Schema::create('city', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('img');
-            $table->text('type');
-            $table->text('location');
-            $table->float('age');
-            $table->integer('price');
-            $table->integer('state');
+            $table->text('code');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateCatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cats');
+        Schema::dropIfExists('city_models');
     }
 }
