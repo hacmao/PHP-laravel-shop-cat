@@ -23,7 +23,8 @@ class CatController extends ApiController
     }
 
     public function findById($id) {
-        return Cat::where('id', $id)->get();
+        $res = $this->catService->findById($id);
+        return $this->apiResponse($res);
     }
 
     public function store(Request $request) {

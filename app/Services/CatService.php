@@ -9,6 +9,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class CatService {
+    public function findById($id) {
+        $query = Cat::with('city');
+        $cat = $query->where('id', $id)->get();
+        return new ResponseModel(Response::HTTP_OK, $cat);
+    }
+
     public function store($request) {
         // validate
         $res = CatType::select('name')->where('name', $request->type)->get();

@@ -29,7 +29,7 @@ Route::get('/users/{id}', [CrudController::class, 'get']);
 
 Route::get('/cats', [CatController::class, 'list']);
 
-Route::get('/cats/{id}', [CatController::class, 'findById']);
+Route::get('/cat/detail/{id}', [CatController::class, 'findById']);
 
 Route::post('/cats', [CatController::class, 'store']);
 
@@ -40,3 +40,4 @@ Route::get('/city', [CityController::class, 'list']);
 Route::get('/cat_type', [CatTypeController::class, 'list']);
 
 Route::get('/cat/filters', [CatController::class, 'filter']);
+
