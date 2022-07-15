@@ -10,6 +10,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'docker build -t php-app-je .'
         sh 'docker image ls'
       }
     }
