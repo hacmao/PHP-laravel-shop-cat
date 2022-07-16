@@ -7,11 +7,18 @@ pipeline {
       defaultContainer "docker"
     }
   }
+  environment {
+    registry = "hacmao/php-app"
+    dockerhubCredentials = "dockerhub_credential"
+  }
+
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t php-app-je .'
-        sh 'docker image ls'
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+        sh "docker image ls"
       }
     }
 
@@ -25,7 +32,11 @@ echo "Test done"'''
 
     stage('Deploy') {
       steps {
-        echo 'Deploy Done'
+        script {
+          docker.withRegistry('', dockerhubCredentials) {
+            dockerImage.push()
+          }
+        }
       }
     }
 
