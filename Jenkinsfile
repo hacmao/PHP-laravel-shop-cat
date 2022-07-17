@@ -1,12 +1,23 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label "kubernetes"
+      idleMinutes 5
+      yamlFile "build-pod.yaml"
+      defaultContainer "docker"
+    }
+  }
+
+  environment {
+    registry = 'hacmao/php-app'
+    DOCKERHUB_CRE = 'docker-token'
+  }
+
   stages {
     stage('Build') {
       steps {
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-
+        sh 'printenv'
+        sh 'docker build -t $registry:$BUILD_NUMBER .'
         sh 'docker image ls'
       }
     }
@@ -19,20 +30,16 @@ echo "Test done"'''
       }
     }
 
-    stage('Deploy') {
+    stage("Login") {
       steps {
-        script {
-          docker.withRegistry('', dockerhubCredentials) {
-            dockerImage.push()
-          }
-        }
-
+        sh 'echo $DOCKERHUB_CRE_PSW | docker login -u $DOCKERHUB_CRE_USR --password-stdin'
       }
     }
 
-  }
-  environment {
-    registry = 'hacmao/php-app'
-    dockerhubCredentials = 'dockerhub_credential'
+    stage('Deploy') {
+      steps {
+        echo 'docker push $registry:$BUILD_NUMBER'
+      }
+    }
   }
 }
