@@ -1,24 +1,13 @@
 pipeline {
-  agent {
-    kubernetes {
-      label "kubernetes"
-      idleMinutes 5
-      yamlFile "build-pod.yaml"
-      defaultContainer "docker"
-    }
-  }
-  environment {
-    registry = "hacmao/php-app"
-    dockerhubCredentials = "dockerhub_credential"
-  }
-
+  agent any
   stages {
     stage('Build') {
       steps {
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-        sh "docker image ls"
+
+        sh 'docker image ls'
       }
     }
 
@@ -37,8 +26,13 @@ echo "Test done"'''
             dockerImage.push()
           }
         }
+
       }
     }
 
+  }
+  environment {
+    registry = 'hacmao/php-app'
+    dockerhubCredentials = 'dockerhub_credential'
   }
 }
