@@ -22,14 +22,6 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-        sh '''echo "Test start"
-sleep 60
-echo "Test done"'''
-      }
-    }
-
     stage("Login") {
       steps {
         sh 'echo $DOCKERHUB_CRE_USR:$DOCKERHUB_CRE_PSW'
