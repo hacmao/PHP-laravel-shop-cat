@@ -12,6 +12,7 @@ spec:
           cpu: "500m"
         limits:
           memory: "1Gi"
+          cpu: "500m"
     - name: docker
       image: docker:18.06.1
       command: ["tail", "-f", "/dev/null"]
@@ -22,6 +23,7 @@ spec:
           cpu: "500m"
         limits:
           memory: "2Gi"
+          cpu: "500m"
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock # We use the k8s host docker engine
