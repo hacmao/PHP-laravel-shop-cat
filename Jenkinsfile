@@ -10,7 +10,7 @@ pipeline {
 
   environment {
     registry = 'hacmao/php-app'
-    DOCKERHUB_CRE = 'docker-token'
+    DOCKERHUB_CRE = credentials('docker-token')
   }
 
   stages {
@@ -32,7 +32,8 @@ echo "Test done"'''
 
     stage("Login") {
       steps {
-        sh 'echo $DOCKERHUB_CRE_PSW | docker login -u $DOCKERHUB_CRE_USR --password-stdin'
+        sh 'echo $DOCKERHUB_CRE_USR:$DOCKERHUB_CRE_PSW'
+        sh 'docker login -u $DOCKERHUB_CRE_USR --password-stdin -p $DOCKERHUB_CRE_PSW'
       }
     }
 
