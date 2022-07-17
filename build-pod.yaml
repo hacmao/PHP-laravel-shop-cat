@@ -19,11 +19,10 @@ spec:
       imagePullPolicy: Always
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "1Gi"
-          cpu: "500m"
-        limits:
           memory: "2Gi"
           cpu: "500m"
+        limits:
+          memory: "3Gi"
       volumeMounts:
         - name: docker
           mountPath: /var/run/docker.sock # We use the k8s host docker engine
