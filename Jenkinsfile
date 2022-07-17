@@ -33,7 +33,7 @@ echo "Test done"'''
     stage("Login") {
       steps {
         sh 'echo $DOCKERHUB_CRE_USR:$DOCKERHUB_CRE_PSW'
-        sh 'docker login -u $DOCKERHUB_CRE_USR --password-stdin -p $DOCKERHUB_CRE_PSW'
+        sh 'docker login -u $DOCKERHUB_CRE_USR -p $DOCKERHUB_CRE_PSW'
       }
     }
 
