@@ -8,6 +8,10 @@ pipeline {
     }
   }
 
+  triggers {
+    pollSCM "* * * * *"
+  }
+
   environment {
     registry = 'hacmao/php-app'
     DOCKERHUB_CRE = credentials('docker-token')
